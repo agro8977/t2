@@ -471,6 +471,35 @@
         
     
                 marker_4ffa839ade7fd0df09f712fb1f593434.setIcon(div_icon_4bed274d8dbb6af89ad2e68799ede656);
+
+
+    map_eb1e039ac74546b5045717629e789161.on('click', function(e) {
+            // 1. 클릭한 곳의 위도(lat)와 경도(lng) 추출
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+
+            // 2. 네이버 지도 검색창에 위도,경도를 쳐서 검색하는 URL 만들기
+            var naverMapUrl = `https://map.naver.com/v5/search/${lat},${lng}`;
             
+            // (참고용) 카카오맵으로 열고 싶을 경우의 URL
+            // var kakaoMapUrl = `https://map.kakao.com/link/map/선택한위치,${lat},${lng}`;
+
+            // 3. 팝업창 디자인 (네이버 스타일의 초록색 버튼)
+            var popupContent = `
+                <div style="text-align: center; padding: 5px;">
+                    <span style="font-size: 13px; color: #666;">선택한 지점의 지번 확인</span><br><br>
+                    <a href="${naverMapUrl}" target="_blank" style="padding: 10px 15px; background-color: #03C75A; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">
+                        📗 네이버 지도에서 보기
+                    </a>
+                </div>
+            `;
+
+            // 4. 클릭한 위치에 팝업 띄우기
+            L.popup()
+                .setLatLng(e.latlng)
+                .setContent(popupContent)
+                .openOn(map_eb1e039ac74546b5045717629e789161);
+        });
+    
 </script>
 </html>
