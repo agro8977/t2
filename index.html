@@ -113,7 +113,7 @@
                 
             } else if (clickCount >= 2) {
                 // 0.3초 안에 두 번 터치됨! (더블클릭 감지)
-                map(e.latlng, map.getZoom() + 1);
+                map.setZoomAround(e.latlng, map.getZoom() + 1);
                 clearTimeout(clickTimer); // 팝업이 뜨려는 것을 즉시 취소(폭파)시킴!
                 clickCount = 0; // 횟수 초기화
                 
